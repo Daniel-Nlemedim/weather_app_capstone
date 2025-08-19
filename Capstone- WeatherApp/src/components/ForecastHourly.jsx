@@ -13,6 +13,7 @@ function ForecastHourly() {
       time: displayTime,
       temp: 22 + i,
       icon: "/icons/sun.png",
+
       wind: 10 + i * 2,
       condition: "Sunny",
     });
