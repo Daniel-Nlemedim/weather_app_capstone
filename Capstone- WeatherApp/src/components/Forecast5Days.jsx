@@ -2,6 +2,12 @@ import React from "react";
 import WeatherCard from "./WeatherCard";
 
 function Forecast5Days() {
+  const CurrentDate = new Date();
+  const displayDate = CurrentDate.toLocaleDateString("en-US", {
+    weekday: "long",
+    month: "short",
+    day: "numeric",
+  });
   const days = [
     {
       date: "2023-10-01",
@@ -36,10 +42,18 @@ function Forecast5Days() {
   ];
   return (
     <section className="rounded-4xl p-4 shadow-2xl bg-gray-800 w-2/4 ml-40">
-      <h2 className="text-lg font-bold text-gray-200">5-Day Forecast</h2>
-      <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
+      <h2 className="text-2xl font-extrabold text-gray-200 items-center">
+        5-Day Forecast
+      </h2>
+      <div className="grid grid-cols-2 gap-4 mt-4 font-extrabold ">
         {days.map((day) => (
-          <WeatherCard key={day.date} {...day} />
+          <div key={day.date} className="flex items-center mb-2">
+            <img src={day.icon} alt={day.condition} className="w-8 h-8 mr-2" />
+            <div>
+              <p className="text-sm font-bold text-gray-400">{displayDate}</p>
+              <p className="text-sm text-gray-400">{day.temperature}°C</p>
+            </div>
+          </div>
         ))}
       </div>
     </section>
