@@ -7,11 +7,6 @@ import {
   Sunrise,
   Sunset,
   SunDim,
-  Snowflake,
-  CloudLightning,
-  CloudRain,
-  Cloud,
-  CloudFog,
   Thermometer,
 } from "lucide-react";
 

@@ -1,20 +1,14 @@
 import { useState } from "react";
-import { Sun, Moon, Search, MapPin } from "lucide-react"; // icons from react-lib
+import { Search, MapPin } from "lucide-react"; // icons from react-lib
+import AppThemeLayout from "../layout/AppThemeLayout";
 
 function Header({ setQuery, apiKey }) {
-  const [darkMode, setDarkMode] = useState(false);
   const [city, setCity] = useState("");
 
   return (
     <header className="flex items-center justify-between bg-gray-800 text-white p-5 rounded-full shadow-lg  ml-40 mr-40 ">
       {/* Toggle Dark Mode */}
-      <button
-        onClick={() => setDarkMode(!darkMode)}
-        className="flex items-center gap-2 px-3 py-2 bg-gray-700 rounded-full hover:bg-gray-600 transition"
-      >
-        {darkMode ? <Moon size={25} /> : <Sun size={25} />}
-        <span className="text-sm">{darkMode ? "Dark" : "Light"} Mode</span>
-      </button>
+      <AppThemeLayout />
 
       {/* Search */}
       <div className="flex items-center bg-gray-700 px-3 py-2 rounded-full w-1/2">

@@ -41,7 +41,7 @@ function Forecast5Days() {
     },
   ];
   return (
-    <section className="rounded-4xl p-4 shadow-2xl bg-gray-800 w-2/4 ml-40">
+    <section className="rounded-4xl p-4 shadow-slate-500 hover:shadow-2xs transition bg-gray-800 w-2/4 ml-45">
       <h2 className="text-2xl font-extrabold text-gray-200 items-center">
         5-Day Forecast
       </h2>
