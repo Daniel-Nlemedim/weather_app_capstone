@@ -2,6 +2,7 @@ import Header from "../components/header";
 import CurrentWeather from "../components/CurrentWeather";
 import Forecast5Days from "../components/Forecast5Days";
 import ForecastHourly from "../components/ForecastHourly";
+import AppThemeLayout from "../layout/AppThemeLayout";
 import { useState } from "react";
 import useSWR from "swr"; // for data fetching
 
@@ -30,19 +31,30 @@ function Dashboard() {
   if (!current || !forecast) return <div>Loading...</div>;
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-800 to-gray-900 text-white p-6">
-      <Header setQuery={setQuery} apiKey={apiKey} />
-      <CurrentWeather weatherData={current} />
+    <AppThemeLayout>
+      {({ isDarkMode, toggleDarkMode }) => (
+        <div className="min-h-screen bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100">
+          <Header
+            setQuery={setQuery}
+            apiKey={apiKey}
+            isDarkMode={isDarkMode}
+            toggleDarkMode={toggleDarkMode}
+          />
 
-      <div className="mt-8 grid grid-cols-1 sm:grid-cols-3 gap-4 mr-7">
-        <div className="sm:col-span-1">
-          <Forecast5Days />
+          <CurrentWeather weatherData={current} />
+
+          <div className="mt-8 grid grid-cols-1 sm:grid-cols-3 gap-4 mr-7">
+            <div className="sm:col-span-1">
+              <Forecast5Days />
+            </div>
+
+            <div className="sm:col-span-2">
+              <ForecastHourly weatherData={forecast} />
+            </div>
+          </div>
         </div>
-        <div className="sm:col-span-2">
-          <ForecastHourly weatherData={forecast} />
-        </div>
-      </div>
-    </div>
+      )}
+    </AppThemeLayout>
   );
 }
 
