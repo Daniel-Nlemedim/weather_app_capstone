@@ -5,7 +5,7 @@ function Header({ setQuery, apiKey, isDarkMode, toggleDarkMode }) {
   const [city, setCity] = useState("");
 
   return (
-    <header className="flex items-center justify-between bg-gray-800 dark:bg-gray-900 text-white p-5 rounded-full shadow-lg ml-40 mr-40">
+    <header className="flex items-center justify-between bg-gray-800 dark:bg-gray-900 text-white p-5 rounded-full shadow-lg ml-40 mr-40 ">
       {/* Dark Mode Toggle Button */}
       <button
         onClick={toggleDarkMode}

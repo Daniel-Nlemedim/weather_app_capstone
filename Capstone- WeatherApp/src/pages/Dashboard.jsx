@@ -1,4 +1,4 @@
-import Header from "../components/header";
+import Header from "../components/Header";
 import CurrentWeather from "../components/CurrentWeather";
 import Forecast5Days from "../components/Forecast5Days";
 import ForecastHourly from "../components/ForecastHourly";
@@ -41,12 +41,13 @@ function Dashboard() {
 
           <CurrentWeather weatherData={current} />
 
-          <div className="mt-8 grid grid-cols-1 sm:grid-cols-3 gap-4 mr-7">
+          <div className=" grid grid-cols-1 sm:grid-cols-3 mr-7 ">
             <div className="sm:col-span-1">
               <Forecast5Days weatherData={forecast} />
             </div>
             <div className="grid grid-flow-col auto-cols-max gap-4 ">
               <ForecastHourly weatherData={forecast} />
+              {/*gives three hour interval forcast*/}
             </div>
           </div>
         </div>

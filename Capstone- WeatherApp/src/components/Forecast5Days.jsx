@@ -27,12 +27,12 @@ function Forecast5Days({ weatherData }) {
   const forecast5 = dailyForecast.slice(0, 5);
 
   return (
-    <section className="rounded-4xl p-4 shadow-slate-500 hover:shadow-2xs transition bg-gray-100 dark:bg-gray-800 ml-45  ">
+    <section className="rounded-4xl p-6 shadow-slate-500 hover:shadow-2xs transition bg-gray-100 dark:bg-gray-800 ml-45  ">
       <h2 className="text-2xl font-bold text-gray-900 dark:text-gray-100">
         5-Day Forecast
       </h2>
 
-      <div className="grid grid-cols-2 sm:grid-cols-5 gap-4 mt-4">
+      <div className="grid grid-cols-2 sm:grid-cols-5 gap-4 mt-4 ">
         {forecast5.map((day, index) => {
           const date = new Date(day.dt_txt);
           const weekday = date.toLocaleDateString("en-US", {
@@ -46,7 +46,7 @@ function Forecast5Days({ weatherData }) {
           return (
             <div
               key={index}
-              className="bg-gray-800 rounded-lg p-5 flex flex-col items-center  text-white shadow duration-200 hover:scale-105 transition-transform"
+              className="bg-gray-800 rounded-lg p-5 flex flex-col items-center  text-white shadow duration-200 hover:scale-105 transition-transform "
             >
               <p className="font-semibold text-gray-700 dark:text-gray-200">
                 {weekday}
@@ -59,7 +59,7 @@ function Forecast5Days({ weatherData }) {
                 {condition}
               </p>
               <Navigation2 size={35} className="text-blue-950" />
-              <p className="text-sm text-gray-500 dark:text-gray-400 font-bold align-center ">
+              <p className="text-sm text-gray-500 dark:text-gray-400 font-bold">
                 {wind} km/h
               </p>
             </div>
