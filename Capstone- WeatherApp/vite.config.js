@@ -7,7 +7,7 @@ export default defineConfig({
     react(),
     tailwindcss({
       config: {
-        darkMode: "class", // 👈 this makes your toggle work
+        darkMode: "class", //
       },
     }),
   ],

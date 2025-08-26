@@ -1,3 +1,5 @@
+import { Navigation2, Wind } from "lucide-react";
+
 function WeatherCard({ weatherData }) {
   if (!weatherData || !weatherData.main) return null;
 
@@ -10,9 +12,9 @@ function WeatherCard({ weatherData }) {
   });
 
   return (
-    <div className="bg-gray-800 rounded-lg p-4 flex flex-col items-center  text-white shadow">
+    <div className="bg-gray-800 rounded-lg p-4 flex flex-col items-center  text-white shadow duration-200 hover:scale-105 transition-transform">
       {/* Time */}
-      <p className="text-sm">{time}</p>
+      <p className="text-lg font-bold">{time}</p>
 
       {/* Icon */}
       {iconCode && (
@@ -25,9 +27,11 @@ function WeatherCard({ weatherData }) {
 
       {/* Temp */}
       <p className="text-lg font-bold">{temp}°C</p>
-
+      <Navigation2 size={35} className="text-blue-950" />
       {/* Wind */}
-      {wind !== undefined && <p className="text-xs">{wind} km/h</p>}
+      {wind !== undefined && (
+        <p className="text-lg text-gray-400 font-bold">{wind} km/h</p>
+      )}
     </div>
   );
 }

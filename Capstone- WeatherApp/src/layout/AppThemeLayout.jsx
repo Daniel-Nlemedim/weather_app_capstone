@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Sun, Moon } from "lucide-react";
 
 function AppThemeLayout({ children }) {
   const savedDarkMode = JSON.parse(localStorage.getItem("darkMode")) || false;
@@ -6,27 +7,20 @@ function AppThemeLayout({ children }) {
 
   useEffect(() => {
     const root = document.documentElement;
-
     if (isDarkMode) {
       root.classList.add("dark");
-      root.setAttribute("data-theme", "dark");
     } else {
       root.classList.remove("dark");
-      root.setAttribute("data-theme", "light");
     }
-
     localStorage.setItem("darkMode", JSON.stringify(isDarkMode));
   }, [isDarkMode]);
 
   const toggleDarkMode = () => setIsDarkMode((prev) => !prev);
 
-  return (
-    <div>
-      {typeof children === "function"
-        ? children({ isDarkMode, toggleDarkMode })
-        : children}
-    </div>
-  );
+  // Pass darkMode state + toggle to children
+  return typeof children === "function"
+    ? children({ isDarkMode, toggleDarkMode })
+    : children;
 }
 
 export default AppThemeLayout;

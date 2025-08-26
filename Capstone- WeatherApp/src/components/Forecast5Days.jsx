@@ -1,60 +1,70 @@
-import React from "react";
-import WeatherCard from "./WeatherCard";
+import { Navigation2 } from "lucide-react";
 
-function Forecast5Days() {
-  const CurrentDate = new Date();
-  const displayDate = CurrentDate.toLocaleDateString("en-US", {
-    weekday: "long",
-    month: "short",
-    day: "numeric",
+function Forecast5Days({ weatherData }) {
+  if (!weatherData || !weatherData.list) {
+    return <div>No forecast data available</div>;
+  }
+
+  // Group forecast by day and pick one (noon) entry
+  const dailyForecast = [];
+  const usedDates = new Set();
+
+  weatherData.list.forEach((entry) => {
+    const date = new Date(entry.dt_txt);
+    const day = date.toLocaleDateString("en-US", { weekday: "long" });
+
+    // Only pick one entry per day (prefer around 12:00)
+    if (
+      !usedDates.has(day) &&
+      date.getHours() === 12 // pick midday forecast
+    ) {
+      dailyForecast.push(entry);
+      usedDates.add(day);
+    }
   });
-  const days = [
-    {
-      date: "2023-10-01",
-      temperature: 22,
-      icon: "/icons/sun.png",
-      condition: "Sunny",
-    },
-    {
-      date: "2023-10-02",
-      temperature: 20,
-      icon: "/icons/cloudy.png",
-      condition: "Cloudy",
-    },
-    {
-      date: "2023-10-03",
-      temperature: 18,
-      icon: "/icons/rain.png",
-      condition: "Rainy",
-    },
-    {
-      date: "2023-10-04",
-      temperature: 21,
-      icon: "/icons/sun.png",
-      condition: "Sunny",
-    },
-    {
-      date: "2023-10-05",
-      temperature: 19,
-      icon: "/icons/cloudy.png",
-      condition: "Cloudy",
-    },
-  ];
+
+  //  only 5 days
+  const forecast5 = dailyForecast.slice(0, 5);
+
   return (
-    <section className="rounded-4xl p-4 shadow-slate-500 hover:shadow-2xs transition bg-gray-800 w-2/4 ml-45">
-      <h2 className="text-2xl font-extrabold text-gray-200 items-center">
+    <section className="rounded-4xl p-4 shadow-slate-500 hover:shadow-2xs transition bg-gray-100 dark:bg-gray-800 ml-45  ">
+      <h2 className="text-2xl font-bold text-gray-900 dark:text-gray-100">
         5-Day Forecast
       </h2>
-      <div className="grid grid-cols-2 gap-4 mt-4 font-extrabold ">
-        {days.map((day) => (
-          <div key={day.date} className="flex items-center mb-2">
-            <img src={day.icon} alt={day.condition} className="w-8 h-8 mr-2" />
-            <div>
-              <p className="text-sm font-bold text-gray-400">{displayDate}</p>
-              <p className="text-sm text-gray-400">{day.temperature}°C</p>
+
+      <div className="grid grid-cols-2 sm:grid-cols-5 gap-4 mt-4">
+        {forecast5.map((day, index) => {
+          const date = new Date(day.dt_txt);
+          const weekday = date.toLocaleDateString("en-US", {
+            weekday: "short",
+          });
+          const temp = Math.round(day.main.temp);
+          const icon = `https://openweathermap.org/img/wn/${day.weather[0].icon}@2x.png`;
+          const condition = day.weather[0].main;
+          const wind = day.wind?.speed;
+
+          return (
+            <div
+              key={index}
+              className="bg-gray-800 rounded-lg p-5 flex flex-col items-center  text-white shadow duration-200 hover:scale-105 transition-transform"
+            >
+              <p className="font-semibold text-gray-700 dark:text-gray-200">
+                {weekday}
+              </p>
+              <img src={icon} alt={condition} className="w-12 h-12" />
+              <p className="text-lg font-bold text-gray-900 dark:text-gray-100">
+                {temp}°C
+              </p>
+              <p className="text-sm text-gray-500 dark:text-gray-400 font-bold">
+                {condition}
+              </p>
+              <Navigation2 size={35} className="text-blue-950" />
+              <p className="text-sm text-gray-500 dark:text-gray-400 font-bold align-center ">
+                {wind} km/h
+              </p>
             </div>
-          </div>
-        ))}
+          );
+        })}
       </div>
     </section>
   );

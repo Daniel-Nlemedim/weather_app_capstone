@@ -50,7 +50,7 @@ function CurrentWeather({ weatherData }) {
   return (
     <section className="flex items-center justify-between text-white p-6 mt-7 ">
       {/* left WeatherCard Details */}
-      <div className="shadow-slate-500 p-30 rounded-4xl bg-gray-800 flex flex-col items-center w-2/6 ml-40 hover:shadow-2xs transition">
+      <div className="shadow-slate-500 p-30 rounded-4xl bg-gray-800 flex flex-col items-center w-2/6 ml-40 hover:shadow-2xs transition ">
         <h2 className="text-3xl font-semibold">{weatherData.name}</h2>
         <p className="text-6xl font-extrabold p-10 text-gray-200">
           {displayHour}:{displayMinute}
