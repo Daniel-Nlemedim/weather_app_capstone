@@ -11,5 +11,5 @@ export default defineConfig({
       },
     }),
   ],
-  base: "/WeatherApp-project/",
+  base: "/weather_app_capstone/",
 });
